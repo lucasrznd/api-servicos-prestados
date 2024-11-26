@@ -22,13 +22,13 @@ Esta API é responsavél para registar contratos associados a um perfil, os resp
 1. Clone o repositório:
 
 ```
-git clone https://github.com/lucasrznd/contratos-servicos-api.git
+git clone https://github.com/lucasrznd/api-servicos-prestados
 ```
 
 2. Navegue até o diretório do projeto
 
 ```
-cd contratos-servicos-api
+cd api-servicos-prestados
 ```
 
 3. Suba o ambiente utilizando Docker:
