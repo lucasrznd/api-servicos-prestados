@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from "express";
-import ProfileService from "../services/profile.service";
+import ContractService from "../services/contract.service";
 
-class ProfileController {
-    private service = new ProfileService();
+class ContractController {
+    private service = new ContractService();
 
     async findAll(req: Request, res: Response, next: NextFunction) {
         try {
-            const type = req.query.type?.toString();
-            const { status, message } = await this.service.findAll(type!);
+            const { status, message } = await this.service.findAll();
             res.status(status).json(message);
         } catch (error) {
             next(error);
@@ -16,23 +15,22 @@ class ProfileController {
 
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const {status, message} = await this.service.create(req.body);
+            const { status, message } = await this.service.create(req.body);
             res.status(status).json(message);
         } catch (error) {
             next(error);
         }
     }
 
-    async getBalance(req: Request, res: Response, next: NextFunction) {
+    async listByProfile(req: Request, res: Response, next: NextFunction) {
         try {
-            const id = req.params.id;
-            const { status, message } = await this.service.getBalance(+id);
+            const id = req.query.id;
+            const { status, message } = await this.service.listByProfile(+id!);
             res.status(status).json(message);
         } catch (error) {
             next(error);
         }
     }
-
 }
 
-export default ProfileController;
+export default ContractController;

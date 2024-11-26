@@ -52,13 +52,24 @@ Contract.belongsTo(Profile, {
     as: 'client'
 });
 
+Contract.belongsTo(Profile, {
+    foreignKey: 'contractorId',
+    as: 'contractor'
+});
+
 Deposit.belongsTo(Profile, {
     foreignKey: 'clientId',
     as: 'client'
 });
 
 Profile.hasMany(Contract, {
-    foreignKey: 'clientId'
+    foreignKey: 'clientId',
+    as: 'Client'
+});
+
+Profile.hasMany(Contract, {
+    foreignKey: 'contractorId',
+    as: 'Contractor'
 })
 
 Profile.hasMany(Deposit, {

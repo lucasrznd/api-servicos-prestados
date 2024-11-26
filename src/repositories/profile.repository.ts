@@ -6,7 +6,7 @@ class ProfileRepository {
     private model: ModelStatic<Profile> = Profile;
 
     async findAll(type: string) {
-        return type === '' || null ? await this.model.findAll({
+        return type === '' || 'undefined' ? await this.model.findAll({
             attributes: { exclude: ['balance'] },
         }) : await this.model.findAll({
             attributes: { exclude: ['balance'] },
@@ -17,7 +17,7 @@ class ProfileRepository {
     }
 
     async create(profile: IProfile) {
-        const createdProifle = await this.model.create({...profile});
+        const createdProifle = await this.model.create({ ...profile });
         return createdProifle;
     }
 
