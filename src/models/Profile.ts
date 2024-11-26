@@ -9,7 +9,7 @@ class Profile extends Model {
     declare firstName: string;
     declare lastName: string;
     declare profession: string;
-    declare balance: string;
+    declare balance: number;
     declare type: string;
 }
 
