@@ -14,9 +14,23 @@ class ProfileRepository {
             });
     }
 
+    async findById(id: number) {
+        return await this.model.findByPk(id);
+    }
+
     async create(profile: IProfile) {
-        const createdProifle = await this.model.create({ ...profile });
-        return createdProifle;
+        const createdProfile = await this.model.create({ ...profile });
+        return createdProfile;
+    }
+
+    async updateBalance(profileId: number, newBalance: number) {
+        return await this.model.update(
+            { balance: newBalance },
+            {
+                where: {
+                    id: profileId
+                }
+            });
     }
 
     async getBalance(id: number) {

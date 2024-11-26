@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import JobService from "../services/job.service";
+import PaymentService from "../services/payment.service";
 
-class JobController {
-    private service = new JobService();
+class PaymentController {
+    private service = new PaymentService();
 
     async findAll(req: Request, res: Response, next: NextFunction) {
         try {
@@ -21,16 +21,6 @@ class JobController {
             next(error);
         }
     }
-
-    async getNotFullyPaid(req: Request, res: Response, next: NextFunction) {
-        try {
-            const contractId = req.query.contractId;
-            const { status, message } = await this.service.getNotFullyPaid(+contractId!);
-            res.status(status).json(message);
-        } catch (error) {
-            next(error);
-        }
-    }
 }
 
-export default JobController;
+export default PaymentController;
