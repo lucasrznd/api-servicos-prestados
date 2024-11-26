@@ -6,14 +6,12 @@ class ProfileRepository {
     private model: ModelStatic<Profile> = Profile;
 
     async findAll(type: string) {
-        return type === '' || 'undefined' ? await this.model.findAll({
-            attributes: { exclude: ['balance'] },
-        }) : await this.model.findAll({
-            attributes: { exclude: ['balance'] },
-            where: {
-                type: type,
-            }
-        });
+        return type === '' || type === 'undefined' || type === undefined ? await this.model.findAll()
+            : await this.model.findAll({
+                where: {
+                    type: type,
+                }
+            });
     }
 
     async create(profile: IProfile) {
